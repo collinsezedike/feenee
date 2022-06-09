@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 from flask import Flask, flash, redirect, render_template, url_for
@@ -34,10 +35,14 @@ def sort_tasks(task_list):
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = "aRANDOMsecretKEY"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 Bootstrap5(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+uri = os.getenv("DATABASE_URL", "sqlite:///database.db")
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
