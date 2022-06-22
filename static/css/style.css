@@ -58,7 +58,7 @@ input {
     margin: auto 0;
 }
 .header-text h1 {
-    font-size: 4rem;
+    font-size: 3rem;
 }
 .header-text p {
     font-size: 1.3rem;
@@ -73,7 +73,7 @@ input {
 
 
 .form-div {
-    width: 50%;
+    width: 70%;
     margin: 2rem auto 5rem;
 }
 #register-link, #login-link {
